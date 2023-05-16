@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path, os
 from dotenv import load_dotenv
 
+#Carrega o biblioteca dot env
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,6 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+#Define a secret key em outro arq para segurança
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -40,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'galeria.apps.GaleriaConfig',
+    'galeria.apps.GaleriaConfig', #app de galeria
+    'usuarios.apps.UsuariosConfig',#app de usuarios
 ]
 
 MIDDLEWARE = [
@@ -119,15 +123,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+#STATIC CONF
+
 STATIC_URL = 'static/'
 
+#Para que não esta em PRODUÇAO
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'setup/static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# MEDIA
+#MEDIA CONF
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -137,3 +144,12 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#MESSAGES CONF
+#Importa messages
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+}

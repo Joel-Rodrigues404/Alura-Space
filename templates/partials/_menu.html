@@ -1,0 +1,46 @@
+{% load static %}
+<div class="pagina-inicial">
+    <header class="cabecalho">
+        <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
+        {% for message in messages %}
+            <div style=" --bs-alert-bg: transparent;
+            --bs-alert-padding-x: 1rem;
+            --bs-alert-padding-y: 1rem;
+            --bs-alert-margin-bottom: 1rem;
+            --bs-alert-color: inherit;
+            --bs-alert-border-color: transparent;
+            --bs-alert-border: 1px solid var(--bs-alert-border-color);
+            --bs-alert-border-radius: 0.375rem;
+            position: relative;
+            padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+            margin-bottom: var(--bs-alert-margin-bottom);
+            color: var(--bs-alert-color);
+            background-color: var(--bs-alert-bg);
+            border: var(--bs-alert-border);
+            border-radius: var(--bs-alert-border-radius);
+            --bs-alert-color: #084298;
+    --bs-alert-bg: #cfe2ff;
+    --bs-alert-border-color: #b6d4fe;" >
+                <p id="messages">{{message}}</p>
+            </div>
+        {% endfor %}
+        <div class="cabecalho__busca">
+            <div class="busca__fundo">
+                <form action="{% url 'galeria:buscar' %}">
+                    <input class="busca__input" type="text" name="buscar" placeholder="O que você procura?">
+                    <button type="submit">
+                        <img class="busca__icone" src="{% static '/assets/ícones/1x/search.png' %}" alt="ícone de search">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+    <main class="principal">
+        <section class="menu-lateral">
+            <nav class="menu-lateral__navegacao">
+                <a href="{% url 'galeria:index' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Home</a>
+                <a href="{% url 'usuarios:login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}">Login</a>
+                <a href="{% url 'usuarios:cadastro' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}">Cadastro</a>
+                <a href="{% url 'usuarios:logout' %}"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}">Logout</a>
+            </nav>
+        </section>
